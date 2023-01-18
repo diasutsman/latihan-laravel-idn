@@ -39,3 +39,4 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Auth::routes();
 
 Route::resource('class', MyClassController::class);
+Route::delete('/class', [MyClassController::class, 'deleteAll']);

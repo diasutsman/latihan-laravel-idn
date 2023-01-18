@@ -44,7 +44,7 @@ class MyClassController extends Controller
     ]);
 
     MyClass::create($validatedData);
-    return redirect('/class');
+    return back();
   }
 
   /**
@@ -61,34 +61,50 @@ class MyClassController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param  \App\Models\MyClass  $myClass
+   * @param  \App\Models\MyClass  $class
    * @return \Illuminate\Http\Response
    */
-  public function edit(MyClass $myClass)
+  public function edit(MyClass $class)
   {
-    //
+    return view('edit', [
+      'member' => $class,
+    ]);
   }
 
   /**
    * Update the specified resource in storage.
    *
    * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\MyClass  $myClass
+   * @param  \App\Models\MyClass  $class
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, MyClass $myClass)
+  public function update(Request $request, MyClass $class)
   {
-    //
+    $validatedData = $request->validate([
+      'name' => 'required:max:255|unique:class,name,' . $class->id . ',id',
+      'major' => 'required:max:255',
+    ]);
+
+    MyClass::where('id', $class->id)
+      ->update($validatedData);
+    return redirect('/home');
   }
 
   /**
    * Remove the specified resource from storage.
    *
-   * @param  \App\Models\MyClass  $myClass
+   * @param  \App\Models\MyClass  $class
    * @return \Illuminate\Http\Response
    */
-  public function destroy(MyClass $myClass)
+  public function destroy(MyClass $class)
   {
-    //
+    MyClass::destroy($class->id);
+    return back();
+  }
+
+  public function deleteAll()
+  {
+    MyClass::truncate();
+    return back();
   }
 }
