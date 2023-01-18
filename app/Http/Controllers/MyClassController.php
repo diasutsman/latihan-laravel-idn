@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\MyClass;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class MyClassController extends Controller
 {
@@ -102,9 +104,17 @@ class MyClassController extends Controller
     return back();
   }
 
-  public function deleteAll()
+  use AuthenticatesUsers;
+
+  public function deleteAll(Request $request)
   {
-    MyClass::truncate();
-    return back();
+    $request->request->add(['email' => auth()->user()->email]);
+    try {
+      $this->login($request);
+      MyClass::truncate();
+      return back()->with('success', 'All Data has been deleted!');
+    } catch (Exception $e) {
+      return back()->with('failure', $e->getMessage());
+    }
   }
 }
