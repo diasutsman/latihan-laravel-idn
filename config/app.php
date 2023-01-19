@@ -29,6 +29,8 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
+    'csc_token' => env('CSC_API', 'no-token'),
+    'csc_email' => env('CSC_EMAIL', 'a@g'),
 
     /*
     |--------------------------------------------------------------------------

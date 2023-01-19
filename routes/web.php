@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyClassController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,4 @@ Auth::routes();
 
 Route::resource('class', MyClassController::class);
 Route::delete('/class', [MyClassController::class, 'deleteAll']);
+Route::resource('students', StudentController::class);

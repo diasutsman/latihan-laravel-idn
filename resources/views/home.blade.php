@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header">Input Member</div>
+                    <div class="card-header">Input Class</div>
 
                     <div class="card-body">
                         <form action="/class" method="POST">

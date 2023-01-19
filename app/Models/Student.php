@@ -11,6 +11,8 @@ class Student extends Model
 
   protected $guarded = [];
 
+  public $with = ['class'];
+
   public function class()
   {
     return $this->belongsTo(MyClass::class);
