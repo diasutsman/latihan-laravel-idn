@@ -96,7 +96,15 @@ class StudentController extends Controller
    */
   public function update(Request $request, Student $student)
   {
-    //
+    $validatedData = $request->validate([
+      'name' => 'required:max:255',
+      'address' => 'required:max:255',
+      'class_id' => 'required',
+    ]);
+
+    Student::where('id', $student->id)
+      ->update($validatedData);
+    return redirect('/students');
   }
 
   /**
