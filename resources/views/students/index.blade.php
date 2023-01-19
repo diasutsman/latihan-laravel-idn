@@ -33,7 +33,7 @@
                                             <td>{{ $student->class->major }}</td>
                                             <td>{{ $student->class->name }}</td>
                                             <td>
-                                                <form action="/students/{{ $student->id }}" method="POST">
+                                                <form action="{{ route('students.destroy',$student->id) }}" method="POST">
                                                     @csrf
                                                     @method('delete')
                                                     <a href="/students/{{ $student->id }}/edit"

@@ -8,7 +8,7 @@
                     <div class="card-header">Edit Member</div>
 
                     <div class="card-body">
-                        <form action="/class/{{ $member->id }}" method="POST">
+                        <form action="{{ route('class.update', $member->id) }}" method="POST">
                             @csrf
                             @method('put')
                             <div class="form-group mb-3">
@@ -30,7 +30,8 @@
                                         Rekayasa Perangkat Lunak</option>
                                     <option value="Desain Multi Media" @if (old('name', $member->major) === 'Desain Multi Media') selected @endif>
                                         Desain Multi Media</option>
-                                    <option value="Teknik Komputer Jaringan"  @if (old('name', $member->major) === 'Teknik Komputer Jaringan') selected @endif>Teknik Komputer Jaringan</option>
+                                    <option value="Teknik Komputer Jaringan"
+                                        @if (old('name', $member->major) === 'Teknik Komputer Jaringan') selected @endif>Teknik Komputer Jaringan</option>
                                 </select>
                                 @error('major')
                                     <div class="invalid-feedback">

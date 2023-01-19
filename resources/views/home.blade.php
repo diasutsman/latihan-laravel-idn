@@ -37,7 +37,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <form action="/class" method="POST">
+                                    <form action="{{ route('class.deleteAll') }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <div class="modal-body">
@@ -85,10 +85,11 @@
                                             <td>{{ $member->name }}</td>
                                             <td>{{ $member->major }}</td>
                                             <td>
-                                                <form action="/class/{{ $member->id }}" method="POST">
+                                                <form action="{{ route('class.destroy', $member->id) }}"
+                                                    method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <a href="/class/{{ $member->id }}/edit"
+                                                    <a href="{{ route('class.edit', $member->id) }}"
                                                         class="btn btn-warning">Edit</a>
                                                     <button type="submit" class="btn btn-danger"
                                                         onclick="return confirm('Are you sure?')">Delete</button>
@@ -105,7 +106,7 @@
                     <div class="card-header">Input Class</div>
 
                     <div class="card-body">
-                        <form action="/class" method="POST">
+                        <form action="{{ route('class.store') }}" method="POST">
                             @csrf
                             <div class="form-group mb-3">
                                 <label for="name">Name</label>
@@ -145,7 +146,7 @@
         const password = document.getElementById('password')
 
         deleteAll.addEventListener('shown.bs.modal', () => {
-          password.focus()
+            password.focus()
         })
     </script>
 @endsection

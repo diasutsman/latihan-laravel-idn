@@ -8,8 +8,9 @@
                     <div class="card-header">Input Student</div>
 
                     <div class="card-body">
-                        <form action="/students" method="POST">
+                        <form action="{{ route('students.update', $student->id) }}" method="POST">
                             @csrf
+                            @method('PUT')
                             <div class="form-group mb-3">
                                 <label for="name">Name</label>
                                 <input type="text" name="name" required
