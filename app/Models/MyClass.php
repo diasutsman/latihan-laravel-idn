@@ -9,7 +9,7 @@ class MyClass extends Model
 {
   use HasFactory;
 
-  protected $table = 'class';
+  protected $table = 'classes';
   protected $guarded = [];
 
   public function students()

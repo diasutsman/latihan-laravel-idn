@@ -41,7 +41,7 @@ class MyClassController extends Controller
   {
 
     $validatedData = $request->validate([
-      'name' => 'required:max:255|unique:class',
+      'name' => 'required:max:255|unique:classes',
       'major' => 'required:max:255',
     ]);
 
@@ -83,7 +83,7 @@ class MyClassController extends Controller
   public function update(Request $request, MyClass $class)
   {
     $validatedData = $request->validate([
-      'name' => 'required:max:255|unique:class,name,' . $class->id . ',id',
+      'name' => 'required:max:255|unique:classes,name,' . $class->id . ',id',
       'major' => 'required:max:255',
     ]);
 
