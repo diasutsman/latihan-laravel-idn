@@ -10,6 +10,13 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
+
+                @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show col-lg-6" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
                 <div class="card mb-4">
                     <div class="card-header">Class Database</div>
 
