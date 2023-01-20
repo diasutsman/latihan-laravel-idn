@@ -15,6 +15,8 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -76,5 +78,7 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

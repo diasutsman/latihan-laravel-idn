@@ -21,6 +21,7 @@
                     <div class="card-header">Class Database</div>
 
                     <div class="card-body">
+                        <a href="{{ route('students.index') }}" class="btn btn-primary">Students Data</a>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAll">
                             Delete All

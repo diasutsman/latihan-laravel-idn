@@ -8,7 +8,18 @@
                     <div class="card-header">Class siswa</div>
 
                     <div class="card-body">
-                        <a href="/students/create" class="btn btn-primary">Add Student</a>
+                        <div class="d-flex gap-2 align-items-start">
+                            <a href="{{ route('home') }}" class="btn btn-success">Home</a>
+                            <a href="{{ route('students.create') }}" class="btn btn-primary">Add Student</a>
+                            <form action="{{ route('students.deleteAll') }}" method="POST">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure want to delete all?')">
+                                    Delete All
+                                </button>
+                            </form>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
@@ -23,7 +34,7 @@
                                 <tbody>
                                     @if ($students->count() == 0)
                                         <tr>
-                                            <td colspan="3" class="text-center">No Data</td>
+                                            <td colspan="100" class="text-center">No Data</td>
                                         </tr>
                                     @endif
                                     @foreach ($students as $student)
@@ -33,7 +44,7 @@
                                             <td>{{ $student->class->major }}</td>
                                             <td>{{ $student->class->name }}</td>
                                             <td>
-                                                <form action="{{ route('students.destroy',$student->id) }}" method="POST">
+                                                <form action="{{ route('students.destroy', $student->id) }}" method="POST">
                                                     @csrf
                                                     @method('delete')
                                                     <a href="/students/{{ $student->id }}/edit"

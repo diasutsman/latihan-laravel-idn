@@ -118,4 +118,11 @@ class StudentController extends Controller
     Student::destroy($student->id);
     return back();
   }
+
+  public function deleteAll()
+  {
+    dd('test');
+    Student::truncate();
+    return back();
+  }
 }
