@@ -11,7 +11,7 @@
                         <div class="d-flex gap-2 align-items-start">
                             <a href="{{ route('home') }}" class="btn btn-success">Home</a>
                             <a href="{{ route('students.create') }}" class="btn btn-primary">Add Student</a>
-                            <form action="{{ route('students.deleteAll') }}" method="POST">
+                            <form action="{{ route('students.destroyAll') }}" method="POST">
                                 @method('delete')
                                 @csrf
                                 <button type="submit" class="btn btn-danger"
