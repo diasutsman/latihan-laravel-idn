@@ -4,9 +4,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MyClassController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,25 +45,10 @@ Auth::routes();
 
 Route::resource('class', MyClassController::class);
 Route::delete('/class', [MyClassController::class, 'deleteAll'])->name('class.deleteAll');
-Route::resource('students', StudentController::class);
-Route::delete('/students', [StudentController::class, 'deleteAll'])
-->middleware(['password.confirm'])
-->name('students.deleteAll');
+Route::resource('students', StudentController::class)->middleware(['auth']);
+Route::delete('/students', [StudentController::class, 'destroyAll'])
+  ->middleware(['password.confirm'])
+  ->name('students.destroyAll');
 
-// Password Confirmation
-Route::get('/confirm-password', function () {
-  return view('auth.passwords.confirm');
-})->middleware('auth')->name('password.confirm');
-Route::post('/confirm-password', function (Request $request) {
-  if (!Hash::check($request->password, $request->user()->password)) {
-    return back()->withErrors([
-      'password' => ['The provided password does not match our records.']
-    ]);
-  }
-
-  // dd([$request->session()->all(), $request->method()]);
-
-  $request->session()->passwordConfirmed();
-
-  return redirect()->action([StudentController::class, 'deleteAll']);
-})->middleware(['auth', 'throttle:6,1']);
+Route::resource('categories', CategoryController::class)->middleware(['auth']);
+Route::resource('books', BookController::class)->middleware(['auth']);

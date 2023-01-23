@@ -119,9 +119,9 @@ class StudentController extends Controller
     return back();
   }
 
-  public function deleteAll()
+  public function destroyAll()
   {
-    dd('test');
+    // dd('test');
     Student::truncate();
     return back();
   }
